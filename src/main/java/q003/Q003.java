@@ -1,6 +1,14 @@
 package q003;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Q003 集計と並べ替え
@@ -33,5 +41,45 @@ public class Q003 {
     private static InputStream openDataFile() {
         return Q003.class.getResourceAsStream("data.txt");
     }
+
+    public static void main(String[] args) {
+    	try {
+        	Map<String, Integer> map = new HashMap<>();
+        	String delimit = "\\,|\\.|\\;|[\\s]|\\–";
+			InputStreamReader is = new InputStreamReader(openDataFile(), "utf-8");
+			BufferedReader br = new BufferedReader(is);
+			String ln;
+			while ((ln = br.readLine()) != null) {
+				String[] words = ln.split(delimit, -1);
+				for (String word : words) {
+					if (!word.isEmpty()) {
+						if (!word.equals("I")) {
+							word = word.toLowerCase();
+						}
+						if (map.containsKey(word)) {
+							int count = map.get(word) + 1;
+							map.put(word, count);
+						} else {
+							map.put(word, 1);
+						}
+					}
+				}
+			}
+			List<String> keylist = new ArrayList<>(map.keySet());
+			Collections.sort(keylist, new java.util.Comparator<String>() {
+				@Override
+				public int compare(String k1, String k2) {
+					String s1 = k1.toLowerCase();
+					String s2 = k2.toLowerCase();
+					return s1.compareTo(s2);
+				}
+			});
+			for (String k : keylist) {
+				System.out.println(k + "=" + map.get(k));
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
 }
-// 完成までの時間: xx時間 xx分
+// 完成までの時間: 1時間 20分
