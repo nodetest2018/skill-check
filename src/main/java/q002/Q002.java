@@ -51,16 +51,16 @@ public class Q002 {
     };
 
     public static void main(String[] args) {
-    	List<String> list = Arrays.asList(dataList);
-    	Collections.sort(list, new java.util.Comparator<String>() {
-    		@Override
-    		public int compare(String s1, String s2) {
-    			int i1 = Integer.parseInt(s1.split(",", -1)[0]);
-        		int i2 = Integer.parseInt(s2.split(",", -1)[0]);
-        		return i1 - i2;
-    		}
-    	});
-    	System.out.println(list);
+        List<String> list = Arrays.asList(dataList);
+        Collections.sort(list, new java.util.Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                int i1 = Integer.parseInt(s1.split(",", -1)[0]);
+                int i2 = Integer.parseInt(s2.split(",", -1)[0]);
+                return i1 - i2;
+            }
+        });
+        System.out.println(list);
     }
 }
 // 完成までの時間: 0時間 20分

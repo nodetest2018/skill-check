@@ -43,43 +43,43 @@ public class Q003 {
     }
 
     public static void main(String[] args) {
-    	try {
-        	Map<String, Integer> map = new HashMap<>();
-        	String delimit = "\\,|\\.|\\;|[\\s]|\\–";
-			InputStreamReader is = new InputStreamReader(openDataFile(), "utf-8");
-			BufferedReader br = new BufferedReader(is);
-			String ln;
-			while ((ln = br.readLine()) != null) {
-				String[] words = ln.split(delimit, -1);
-				for (String word : words) {
-					if (!word.isEmpty()) {
-						if (!word.equals("I")) {
-							word = word.toLowerCase();
-						}
-						if (map.containsKey(word)) {
-							int count = map.get(word) + 1;
-							map.put(word, count);
-						} else {
-							map.put(word, 1);
-						}
-					}
-				}
-			}
-			List<String> keylist = new ArrayList<>(map.keySet());
-			Collections.sort(keylist, new java.util.Comparator<String>() {
-				@Override
-				public int compare(String k1, String k2) {
-					String s1 = k1.toLowerCase();
-					String s2 = k2.toLowerCase();
-					return s1.compareTo(s2);
-				}
-			});
-			for (String k : keylist) {
-				System.out.println(k + "=" + map.get(k));
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        try {
+            Map<String, Integer> map = new HashMap<>();
+            String delimit = "\\,|\\.|\\;|[\\s]|\\–";
+            InputStreamReader is = new InputStreamReader(openDataFile(), "utf-8");
+            BufferedReader br = new BufferedReader(is);
+            String ln;
+            while ((ln = br.readLine()) != null) {
+                String[] words = ln.split(delimit, -1);
+                for (String word : words) {
+                    if (!word.isEmpty()) {
+                        if (!word.equals("I")) {
+                            word = word.toLowerCase();
+                        }
+                        if (map.containsKey(word)) {
+                            int count = map.get(word) + 1;
+                            map.put(word, count);
+                        } else {
+                            map.put(word, 1);
+                        }
+                    }
+                }
+            }
+            List<String> keylist = new ArrayList<>(map.keySet());
+            Collections.sort(keylist, new java.util.Comparator<String>() {
+                @Override
+                public int compare(String k1, String k2) {
+                    String s1 = k1.toLowerCase();
+                    String s2 = k2.toLowerCase();
+                    return s1.compareTo(s2);
+                }
+            });
+            for (String k : keylist) {
+                System.out.println(k + "=" + map.get(k));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 // 完成までの時間: 1時間 20分
