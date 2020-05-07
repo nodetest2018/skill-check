@@ -1,5 +1,10 @@
 package q005;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 /**
  * Q005 データクラスと様々な集計
  *
@@ -30,5 +35,34 @@ T-7-30002: xx時間xx分
 （省略）
  */
 public class Q005 {
+    /**
+     * データファイルを開く
+     * resources/q005/data.txt
+     */
+    private static InputStream openDataFile() {
+        return Q005.class.getResourceAsStream("data.txt");
+    }
+
+    public static void main(String[] args) {
+        try {
+            WorkData wd = new WorkData();
+            String header = "社員番号,部署名,役職名,P-CODE,作業時間";
+            String delimit = "\\,";
+            InputStreamReader is = new InputStreamReader(openDataFile(), "utf-8");
+            BufferedReader br = new BufferedReader(is);
+            String ln;
+            while ((ln = br.readLine()) != null) {
+                if (header.equals(ln)) {
+                    continue;
+                }
+                String[] datas = ln.split(delimit);
+                wd.setData(datas[0], datas[2], datas[3], Integer.parseInt(datas[4]));
+                wd.aggregateData();
+            }
+            wd.outData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
-// 完成までの時間: xx時間 xx分
+// 完成までの時間: 1時間 00分
