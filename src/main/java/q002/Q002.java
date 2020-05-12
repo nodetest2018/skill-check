@@ -63,4 +63,4 @@ public class Q002 {
         System.out.println(list);
     }
 }
-// 完成までの時間: 0時間 20分
+// 完成までの時間: 0時間 30分

@@ -81,4 +81,4 @@ public class Q006 {
         System.out.println(output.pop());
     }
 }
-// 完成までの時間: 1時間 00分
+// 完成までの時間: 1時間 30分
